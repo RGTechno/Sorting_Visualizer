@@ -1,0 +1,27 @@
+body {
+  background-color: #212529;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container-fluid {
+  padding: 1% 2% 0 2%;
+}
+
+.appName {
+  font-size: 2rem;
+  font-weight: bolder;
+}
+.navItemsList {
+  margin-left: auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.newArray {
+  margin-right: 1rem;
+}
+
+.navDropdown {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
