@@ -38,6 +38,9 @@ body {
   width: 2%;
   background-color: white;
   margin-right: 1px;
-  margin-left: 1px;
+  margin-left: 2px;
   display: inline-block;
+  border-radius: 50px;
+  box-shadow: 3px 5px #888888;
 }
+
