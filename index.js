@@ -15,7 +15,7 @@ for (let i = 0; i < A.length; i++) {
 let barsHeight = [];
 const n = 30;
 for (let i = 0; i < n; i++) {
-  barsHeight.push(300);
+  barsHeight.push(0);
 }
 generateNewArray();
 
@@ -23,19 +23,19 @@ document.querySelector(".newArray").addEventListener("click", generateNewArray);
 
 function generateNewArray() {
   for (let i = 0; i < n; i++) {
-    let a = Math.floor(Math.random() * 201);
+    let a = Math.floor(Math.random() * 351);
     let b = Math.floor(Math.random() * 101);
 
-    barsHeight[i] = a + b; // 0 <= a+b <= 300
+    barsHeight[i] = a + b; // 0 <= a+b <= 450
 
-    if (barsHeight[i] <= 100) barsHeight[i] += 100; // 100 <= barsHeight[i] <= 300
+    if (barsHeight[i] <= 100) barsHeight[i] += 50; // 50 <= barsHeight[i] <= 450
 
     document.getElementById("b" + i).style.height = barsHeight[i] + "px";
   }
 
-  // Atleast one bar must have a height = 300
+  // Atleast one bar must have a height = 450
   // randomly selecting the index
   let i = Math.floor(Math.random() * 30);
-  barsHeight[i] = 300;
+  barsHeight[i] = 450;
   document.getElementById("b" + i).style.height = barsHeight[i] + "px";
 }
