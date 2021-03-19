@@ -3,10 +3,12 @@ let A = document.getElementsByClassName('dropdown-item')
 let barsCon = document.querySelector('.bars')
 let sortBtn = document.getElementById('sortBtn')
 
+let temp
+
 console.log(A)
 for (let i = 0; i < A.length; i++) {
   A[i].addEventListener('click', function () {
-    let temp = A[i].innerHTML
+    temp = A[i].innerHTML
     A[i].innerHTML = document.getElementById('navbarDropdownMenuLink').innerHTML
     document.getElementById('navbarDropdownMenuLink').innerHTML = temp
   })
@@ -77,7 +79,18 @@ const anim = (bar, height, color) => {
 
 //Start Sorting
 
-sortBtn.addEventListener('click', bubbleSort)
+sortBtn.addEventListener('click', () => {
+  switch (temp) {
+    case "Bubble Sort":
+      bubbleSort()      
+      break;
+    case "Selection Sort":
+      selectionSort()
+      break;  
+    default:
+      bubbleSort();
+  }
+})
 
 //Sorting
 
@@ -99,10 +112,31 @@ function bubbleSort() {
         anim(bars[j + 1], barsHeight[j + 1], 'lightgreen')
       }
       anim(bars[j], barsHeight[j], 'whitesmoke')
-      anim(bars[j+1], barsHeight[j+1], 'whitesmoke')
-
+      anim(bars[j + 1], barsHeight[j + 1], 'whitesmoke')
     }
-    anim(bars[n-1-i], barsHeight[n-1-i], 'violet')
+    anim(bars[n - 1 - i], barsHeight[n - 1 - i], 'violet')
   }
   anim(bars[0], barsHeight[0], 'violet')
+}
+
+function selectionSort() {
+  for (let i = 0; i < n - 1; i++) {
+    let min = i
+    anim(bars[i], barsHeight[i], 'teal')
+
+    for (let j = i + 1; j < n; j++) {
+      // anim(bars[j], barsHeight[j], 'violet')
+
+      if (barsHeight[j] < barsHeight[min]) {
+        min = j
+      }
+    }
+    anim(bars[min], barsHeight[min], 'cyan')
+    let temp = barsHeight[i]
+    barsHeight[i] = barsHeight[min]
+    barsHeight[min] = temp
+    anim(bars[i], barsHeight[i], 'lightgreen')
+    if(min!=i) anim(bars[min], barsHeight[min], 'white')
+  }
+  anim(bars[n-1], barsHeight[n-1], 'lightgreen')
 }
