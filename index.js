@@ -1,142 +1,182 @@
-// Navigation Bar Dropdown
-let A = document.getElementsByClassName('dropdown-item')
-let barsCon = document.querySelector('.bars')
-let sortBtn = document.getElementById('sortBtn')
+// Returns Random Number : [min, max]
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
-let temp
-
-console.log(A)
+// Navigation Bar Dropdown Swapping
+let A = document.getElementsByClassName("dropdown-item");
+let curAlgo = "Bubble Sort";
 for (let i = 0; i < A.length; i++) {
-  A[i].addEventListener('click', function () {
-    temp = A[i].innerHTML
-    A[i].innerHTML = document.getElementById('navbarDropdownMenuLink').innerHTML
-    document.getElementById('navbarDropdownMenuLink').innerHTML = temp
-  })
+  A[i].addEventListener("click", function () {
+    curAlgo = A[i].innerHTML;
+    let temp = A[i].innerHTML;
+    A[i].innerHTML = document.getElementById(
+      "navbarDropdownMenuLink"
+    ).innerHTML;
+    document.getElementById("navbarDropdownMenuLink").innerHTML = temp;
+  });
 }
 
 // Bars
-let barsHeight = []
-let bars = []
-const n = 30
+let barsHeight = [];
+let bars = [];
+const n = 30;
+let barsCon = document.querySelector(".barsCon");
 
+// Generation
 const generateNewArray = () => {
-  console.log(barsHeight)
-  barsCon.innerHTML = ''
+  barsCon.innerHTML = "";
   for (let i = 0; i < n; i++) {
-    barsHeight[i] = randomNumber(50, 400)
-    bars[i] = document.createElement('div')
-    bars[i].classList.add('bar')
-    barsCon.appendChild(bars[i])
-    bars[i].style.height = `${barsHeight[i]}px`
+    barsHeight[i] = randomNumber(20, 420);
+    bars[i] = document.createElement("div");
+    bars[i].classList.add("bar");
+    barsCon.appendChild(bars[i]);
+    bars[i].style.height = barsHeight[i] + "px";
   }
-  let i = Math.floor(Math.random() * 30)
-  barsHeight[i] = 400
-  bars[i].style.height = `${barsHeight[i]}px`
-  console.log(Math.max(...barsHeight), i)
-}
+  let i = Math.floor(Math.random() * 30);
+  barsHeight[i] = 420;
+  bars[i].style.height = barsHeight[i] + "px";
+};
 
-// for (let i = 0; i < n; i++) {
-//   barsHeight.push(300)
-// }
-generateNewArray()
+//Generate New Array Event Listener
+document.querySelector(".newArray").addEventListener("click", generateNewArray);
 
-document.querySelector('.newArray').addEventListener('click', generateNewArray)
-
-// function generateNewArray() {
-//   for (let i = 0; i < n; i++) {
-//     let a = Math.floor(Math.random() * 201)
-//     let b = Math.floor(Math.random() * 101)
-
-//     barsHeight[i] = a + b // 0 <= a+b <= 300
-
-//     if (barsHeight[i] <= 100) barsHeight[i] += 100 // 100 <= barsHeight[i] <= 300
-
-//     document.getElementById('b' + i).style.height = barsHeight[i] + 'px'
-//   }
-
-//   // Atleast one bar must have a height = 300
-//   // randomly selecting the index
-//   let i = Math.floor(Math.random() * 30)
-//   barsHeight[i] = 300
-//   document.getElementById('b' + i).style.height = barsHeight[i] + 'px'
-// }
-
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-//Visual
-
-let speed = 1000
-let delay = 10000 / (Math.floor(n / 10) * speed)
-let c = 0
+//Visuals
+let speed = 800;
+let delay = 10000 / (Math.floor(n / 10) * speed);
+let c = 0;
 
 const anim = (bar, height, color) => {
   setTimeout(() => {
-    bar.style = `height:${height}px;background-color:${color};`
-  }, (c += delay))
-}
+    bar.style.height = height + "px";
+    bar.style.backgroundColor = color;
+  }, (c += delay));
+};
 
-//Start Sorting
-
-sortBtn.addEventListener('click', () => {
-  switch (temp) {
+//Sorting Button
+let sortBtn = document.getElementById("sortBtn");
+sortBtn.addEventListener("click", () => {
+  switch (curAlgo) {
     case "Bubble Sort":
-      bubbleSort()      
+      bubbleSort();
       break;
     case "Selection Sort":
-      selectionSort()
-      break;  
+      selectionSort();
+      break;
+    case "Merge Sort":
+      mergeSort(0, n - 1);
+      break;
     default:
       bubbleSort();
   }
-})
 
-//Sorting
+  for (let i = 0; i < n; i++) {
+    anim(bars[i], barsHeight[i], "whitesmoke");
+  }
+  for (let i = 0; i < n; i++) {
+    anim(bars[i], barsHeight[i], "#e41f7b");
+  }
+  c = 0;
+});
 
+//Sorting Algorithms
+
+// Bubble Sort
 function bubbleSort() {
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
-      anim(bars[j], barsHeight[j], 'lightgreen')
-      anim(bars[j + 1], barsHeight[j + 1], 'teal')
+      anim(bars[j], barsHeight[j], "#ff8ba0");
+      anim(bars[j + 1], barsHeight[j + 1], "#86003c");
 
       if (barsHeight[j] > barsHeight[j + 1]) {
-        // anim(bars[j], barsHeight[j], 'cyan')
-        // anim(bars[j + 1], barsHeight[j + 1], 'cyan')
+        let temp = barsHeight[j];
+        barsHeight[j] = barsHeight[j + 1];
+        barsHeight[j + 1] = temp;
 
-        let temp = barsHeight[j]
-        barsHeight[j] = barsHeight[j + 1]
-        barsHeight[j + 1] = temp
-
-        anim(bars[j], barsHeight[j], 'teal')
-        anim(bars[j + 1], barsHeight[j + 1], 'lightgreen')
+        anim(bars[j], barsHeight[j], "#86003c");
+        anim(bars[j + 1], barsHeight[j + 1], "#ff8ba0");
       }
-      anim(bars[j], barsHeight[j], 'whitesmoke')
-      anim(bars[j + 1], barsHeight[j + 1], 'whitesmoke')
+      anim(bars[j], barsHeight[j], "whitesmoke");
+      anim(bars[j + 1], barsHeight[j + 1], "whitesmoke");
     }
-    anim(bars[n - 1 - i], barsHeight[n - 1 - i], 'violet')
+    anim(bars[n - 1 - i], barsHeight[n - 1 - i], "#e41f7b");
   }
-  anim(bars[0], barsHeight[0], 'violet')
+  //sorted region
+  anim(bars[0], barsHeight[0], "#e41f7b");
 }
 
+// Selection Sort
 function selectionSort() {
   for (let i = 0; i < n - 1; i++) {
-    let min = i
-    anim(bars[i], barsHeight[i], 'teal')
+    let min = i;
+    anim(bars[i], barsHeight[i], "#ff8ba0");
 
     for (let j = i + 1; j < n; j++) {
-      // anim(bars[j], barsHeight[j], 'violet')
+      anim(bars[j], barsHeight[j], "#86003c");
 
       if (barsHeight[j] < barsHeight[min]) {
-        min = j
+        min = j;
       }
+      anim(bars[j], barsHeight[j], "whitesmoke");
     }
-    anim(bars[min], barsHeight[min], 'cyan')
-    let temp = barsHeight[i]
-    barsHeight[i] = barsHeight[min]
-    barsHeight[min] = temp
-    anim(bars[i], barsHeight[i], 'lightgreen')
-    if(min!=i) anim(bars[min], barsHeight[min], 'white')
+
+    let temp = barsHeight[i];
+    barsHeight[i] = barsHeight[min];
+    barsHeight[min] = temp;
+
+    anim(bars[i], barsHeight[i], "#e41f7b");
+
+    if (min != i) anim(bars[min], barsHeight[min], "whitesmoke");
   }
-  anim(bars[n-1], barsHeight[n-1], 'lightgreen')
+  //sorted region
+  anim(bars[n - 1], barsHeight[n - 1], "#e41f7b");
 }
+
+// Merge Sort
+function mergeSort(start, end) {
+  if (start >= end) {
+    return;
+  }
+  let m = Math.floor((start + end) / 2);
+  mergeSort(start, m);
+  mergeSort(m + 1, end);
+  merge(start, end);
+}
+
+function merge(start, end) {
+  let s1 = start;
+  let e1 = Math.floor((start + end) / 2);
+  let s2 = e1 + 1;
+  let e2 = end;
+  let C = [];
+
+  while (s1 <= e1 && s2 <= e2) {
+    if (barsHeight[s1] <= barsHeight[s2]) {
+      anim(bars[s1], barsHeight[s1], "#ff8ba0");
+      C.push(barsHeight[s1]);
+      s1++;
+    } else {
+      C.push(barsHeight[s2]);
+      anim(bars[s2], barsHeight[s2], "#86003c");
+      s2++;
+    }
+  }
+  while (s1 <= e1) {
+    anim(bars[s1], barsHeight[s1], "#ff8ba0");
+    C.push(barsHeight[s1]);
+    s1++;
+  }
+  while (s2 <= e2) {
+    C.push(barsHeight[s2]);
+    anim(bars[s2], barsHeight[s2], "#86003c");
+    s2++;
+  }
+
+  //sorted region
+  for (let i = 0; i < C.length; i++) {
+    barsHeight[start + i] = C[i];
+    anim(bars[start + i], barsHeight[start + i], "#e41f7b");
+  }
+}
+
+generateNewArray();
