@@ -31,7 +31,8 @@ body {
 
 /* Bars */
 .bars {
-  margin-top: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 .bar {
   height: 0px;
@@ -44,3 +45,11 @@ body {
   box-shadow: 3px 5px #888888;
 }
 
+/* Sort Btn */
+.btn-lg {
+  font-size: 1.75rem;
+  border-radius: 50px;
+  box-shadow: 5px 3px #888888;
+  font-weight: bold;
+  width: 225px;
+}
