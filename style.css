@@ -2,6 +2,7 @@ body {
   background-color: #212529;
   font-family: "Montserrat", sans-serif;
   text-align: center;
+  zoom: 75%;
 }
 
 /* Navigation Bar */
@@ -30,16 +31,14 @@ body {
 }
 
 /* Bars */
-.bars {
+.barsCon {
   margin-top: 5%;
-  margin-bottom: 5%;
 }
 .bar {
-  height: 0px;
   width: 2%;
-  background-color: white;
-  margin-right: 1px;
-  margin-left: 2px;
+  background-color: whitesmoke;
+  margin-right: 2px;
+  margin-left: 5px;
   display: inline-block;
   border-radius: 50px;
   box-shadow: 3px 5px #888888;
