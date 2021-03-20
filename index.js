@@ -66,70 +66,73 @@ sortBtn.addEventListener("click", () => {
     case "Merge Sort":
       mergeSort(0, n - 1);
       break;
+    case "Heap Sort":
+      heapSort();
+      break;
     default:
-      bubbleSort();
+      heapSort();
   }
 
   for (let i = 0; i < n; i++) {
     anim(bars[i], barsHeight[i], "whitesmoke");
   }
   for (let i = 0; i < n; i++) {
-    anim(bars[i], barsHeight[i], "#e41f7b");
+    anim(bars[i], barsHeight[i], sorted);
   }
   c = 0;
 });
 
 //Sorting Algorithms
 
+// colors
+let p = "whitesmoke";
+let p1 = "#ff8ba0";
+let p2 = "#86003c";
+let sorted = "#e41f7b";
+let heap = "whitesmoke";
+
 // Bubble Sort
 function bubbleSort() {
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
-      anim(bars[j], barsHeight[j], "#ff8ba0");
-      anim(bars[j + 1], barsHeight[j + 1], "#86003c");
+      anim(bars[j], barsHeight[j], p1);
+      anim(bars[j + 1], barsHeight[j + 1], p2);
 
       if (barsHeight[j] > barsHeight[j + 1]) {
-        let temp = barsHeight[j];
-        barsHeight[j] = barsHeight[j + 1];
-        barsHeight[j + 1] = temp;
+        [barsHeight[j], barsHeight[j + 1]] = [barsHeight[j + 1], barsHeight[j]];
 
-        anim(bars[j], barsHeight[j], "#86003c");
-        anim(bars[j + 1], barsHeight[j + 1], "#ff8ba0");
+        anim(bars[j], barsHeight[j], p2);
+        anim(bars[j + 1], barsHeight[j + 1], p1);
       }
-      anim(bars[j], barsHeight[j], "whitesmoke");
-      anim(bars[j + 1], barsHeight[j + 1], "whitesmoke");
+
+      anim(bars[j], barsHeight[j], p);
+      anim(bars[j + 1], barsHeight[j + 1], p);
     }
-    anim(bars[n - 1 - i], barsHeight[n - 1 - i], "#e41f7b");
+    anim(bars[n - 1 - i], barsHeight[n - 1 - i], sorted);
   }
   //sorted region
-  anim(bars[0], barsHeight[0], "#e41f7b");
+  anim(bars[0], barsHeight[0], sorted);
 }
 
 // Selection Sort
 function selectionSort() {
   for (let i = 0; i < n - 1; i++) {
     let min = i;
-    anim(bars[i], barsHeight[i], "#ff8ba0");
+    for (let j = n - 1; j > i; j--) {
+      anim(bars[j], barsHeight[j], p1);
 
-    for (let j = i + 1; j < n; j++) {
-      anim(bars[j], barsHeight[j], "#86003c");
-
-      if (barsHeight[j] < barsHeight[min]) {
-        min = j;
-      }
-      anim(bars[j], barsHeight[j], "whitesmoke");
+      if (barsHeight[j] < barsHeight[min]) min = j;
+      anim(bars[j], barsHeight[j], p);
     }
 
-    let temp = barsHeight[i];
-    barsHeight[i] = barsHeight[min];
-    barsHeight[min] = temp;
+    [barsHeight[i], barsHeight[min]] = [barsHeight[min], barsHeight[i]];
 
-    anim(bars[i], barsHeight[i], "#e41f7b");
+    anim(bars[i], barsHeight[i], sorted);
 
-    if (min != i) anim(bars[min], barsHeight[min], "whitesmoke");
+    if (min != i) anim(bars[min], barsHeight[min], p);
   }
   //sorted region
-  anim(bars[n - 1], barsHeight[n - 1], "#e41f7b");
+  anim(bars[n - 1], barsHeight[n - 1], sorted);
 }
 
 // Merge Sort
@@ -152,30 +155,86 @@ function merge(start, end) {
 
   while (s1 <= e1 && s2 <= e2) {
     if (barsHeight[s1] <= barsHeight[s2]) {
-      anim(bars[s1], barsHeight[s1], "#ff8ba0");
+      anim(bars[s1], barsHeight[s1], p1);
       C.push(barsHeight[s1]);
       s1++;
     } else {
       C.push(barsHeight[s2]);
-      anim(bars[s2], barsHeight[s2], "#86003c");
+      anim(bars[s2], barsHeight[s2], p2);
       s2++;
     }
   }
   while (s1 <= e1) {
-    anim(bars[s1], barsHeight[s1], "#ff8ba0");
+    anim(bars[s1], barsHeight[s1], p1);
     C.push(barsHeight[s1]);
     s1++;
   }
   while (s2 <= e2) {
     C.push(barsHeight[s2]);
-    anim(bars[s2], barsHeight[s2], "#86003c");
+    anim(bars[s2], barsHeight[s2], p2);
     s2++;
   }
 
   //sorted region
   for (let i = 0; i < C.length; i++) {
     barsHeight[start + i] = C[i];
-    anim(bars[start + i], barsHeight[start + i], "#e41f7b");
+    anim(bars[start + i], barsHeight[start + i], sorted);
+  }
+}
+
+// Heap Sort
+function heapSort() {
+  for (let i = 0; i < n; i++) {
+    heapifyUp(i);
+  }
+
+  for (let i = 0; i < n - 1; i++) {
+    let last = n - 1 - i;
+    [barsHeight[0], barsHeight[last]] = [barsHeight[last], barsHeight[0]];
+
+    anim(bars[last], barsHeight[last], sorted);
+
+    heapifyDown(last);
+  }
+}
+
+function heapifyUp(i) {
+  let parent = Math.floor((i - 1) / 2);
+
+  while (i > 0 && barsHeight[parent] < barsHeight[i]) {
+    anim(bars[i], barsHeight[i], p1);
+    anim(bars[parent], barsHeight[parent], p2);
+
+    [barsHeight[i], barsHeight[parent]] = [barsHeight[parent], barsHeight[i]];
+
+    anim(bars[i], barsHeight[i], heap);
+    anim(bars[parent], barsHeight[parent], heap);
+
+    i = parent;
+    parent = Math.floor((i - 1) / 2);
+  }
+  anim(bars[i], barsHeight[i], heap);
+}
+
+function heapifyDown(size) {
+  let i = 0;
+  while (2 * i + 1 < size) {
+    let Child = 2 * i + 1;
+    if (2 * i + 2 < size && barsHeight[2 * i + 2] >= barsHeight[Child]) {
+      Child = 2 * i + 2;
+    }
+    anim(bars[i], barsHeight[i], p1);
+    anim(bars[Child], barsHeight[Child], p2);
+
+    anim(bars[i], barsHeight[i], heap);
+    anim(bars[Child], barsHeight[Child], heap);
+
+    if (barsHeight[i] >= barsHeight[Child]) {
+      return;
+    }
+
+    [barsHeight[i], barsHeight[Child]] = [barsHeight[Child], barsHeight[i]];
+    i = Child;
   }
 }
 
