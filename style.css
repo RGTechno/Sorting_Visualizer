@@ -31,12 +31,12 @@ body {
 }
 
 /* Bars */
-.bars {
+.barsCon {
   margin-top: 5%;
 }
 .bar {
   width: 2%;
-  background-color: white;
+  background-color: whitesmoke;
   margin-right: 2px;
   margin-left: 5px;
   display: inline-block;
