@@ -9,11 +9,10 @@ let curAlgo = "Bubble Sort";
 for (let i = 0; i < A.length; i++) {
   A[i].addEventListener("click", function () {
     curAlgo = A[i].innerHTML;
-    let temp = A[i].innerHTML;
     A[i].innerHTML = document.getElementById(
       "navbarDropdownMenuLink"
     ).innerHTML;
-    document.getElementById("navbarDropdownMenuLink").innerHTML = temp;
+    document.getElementById("navbarDropdownMenuLink").innerHTML = curAlgo;
   });
 }
 
@@ -70,7 +69,7 @@ sortBtn.addEventListener("click", () => {
       heapSort();
       break;
     default:
-      heapSort();
+      // bubbleSort();
   }
 
   for (let i = 0; i < n; i++) {
