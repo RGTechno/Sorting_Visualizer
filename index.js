@@ -31,24 +31,28 @@ let barsCon = document.querySelector('.barsCon')
 const generateNewArray = () => {
   barsCon.innerHTML = ''
   for (let i = 0; i < n; i++) {
-    barsHeight[i] = randomNumber(100, 500)
-    bars[i] = document.createElement('div')
-    bars[i].classList.add('bar')
-    barsCon.appendChild(bars[i])
-    bars[i].style.height = barsHeight[i] + 'px'
+
+    barsHeight[i] = randomNumber(100, 500);
+    bars[i] = document.createElement("div");
+    bars[i].classList.add("bar");
+    barsCon.appendChild(bars[i]);
+    bars[i].style.height = barsHeight[i] + "px";
   }
-  let i = Math.floor(Math.random() * 30)
-  barsHeight[i] = 500
-  bars[i].style.height = barsHeight[i] + 'px'
-}
+  let i = Math.floor(Math.random() * 30);
+  barsHeight[i] = 500;
+  bars[i].style.height = barsHeight[i] + "px";
+};
+
 
 //Generate New Array Event Listener
 document.querySelector('.newArray').addEventListener('click', generateNewArray)
 
 //Visuals
-let speed = 500
-let delay = 10000 / (Math.floor(n / 10) * speed)
-let c = 0
+
+let speed = 500;
+let delay = 10000 / (Math.floor(n / 10) * speed);
+let c = 0;
+
 
 const anim = (bar, height, color) => {
   setTimeout(() => {
@@ -61,25 +65,29 @@ const anim = (bar, height, color) => {
 let sortBtn = document.getElementById('sortBtn')
 sortBtn.addEventListener('click', () => {
   switch (curAlgo) {
-    case 'Bubble Sort':
-      bubbleSort()
-      break
-    case 'Selection Sort':
-      selectionSort()
-      break
-    case 'Insertion Sort':
-      insertionSort()
-      break
-    case 'Merge Sort':
-      mergeSort(0, n - 1)
-      break
-    case 'Heap Sort':
-      heapSort()
-      break
-    default:
-    // bubbleSort();
-  }
 
+    case "Bubble Sort":
+      bubbleSort();
+      break;
+    case "Selection Sort":
+      selectionSort();
+      break;
+    case "Insertion Sort":
+      insertionSort();
+      break;
+    case "Merge Sort":
+      mergeSort(0, n - 1);
+      break;
+    case "Heap Sort":
+      heapSort();
+      break;
+    case "Quick Sort":
+      quickSort(0, n - 1);
+      break;
+    default:
+      bubbleSort();
+
+  }
   for (let i = 0; i < n; i++) {
     anim(bars[i], barsHeight[i], 'whitesmoke')
   }
@@ -125,8 +133,10 @@ function bubbleSort() {
 // Selection Sort
 function selectionSort() {
   for (let i = 0; i < n - 1; i++) {
-    let min = i
-    // anim(bars[i],barsHeight[i],p2)
+
+    let min = i;
+
+
     for (let j = n - 1; j > i; j--) {
       anim(bars[j], barsHeight[j], p1)
 
@@ -158,6 +168,28 @@ function insertionSort() {
     if (j < 0) anim(bars[j + 1], barsHeight[j + 1], 'green')
     anim(bars[j], barsHeight[j], 'green')
     // anim(bars[j + 1], barsHeight[j + 1], 'green')
+  }
+}
+
+//Insertion Sort
+function insertionSort() {
+  for (let i = 0; i < n; i++) {
+    let no = barsHeight[i];
+    anim(bars[i], barsHeight[i], p2);
+    let j = i - 1;
+    for (j = i - 1; j >= 0 && barsHeight[j] > no; j--) {
+      barsHeight[j + 1] = barsHeight[j];
+      anim(bars[j], barsHeight[j], p1);
+      anim(bars[j + 1], barsHeight[j + 1], p2);
+      anim(bars[j + 1], barsHeight[j + 1], sorted);
+      anim(bars[j], barsHeight[j], sorted);
+    }
+    barsHeight[j + 1] = no;
+
+    anim(bars[i], barsHeight[i], p1);
+    anim(bars[i], barsHeight[i], sorted);
+    anim(bars[j + 1], barsHeight[j + 1], p2);
+    anim(bars[j + 1], barsHeight[j + 1], sorted);
   }
 }
 
@@ -228,9 +260,11 @@ function heapifyUp(i) {
   let parent = Math.floor((i - 1) / 2)
 
   while (i > 0 && barsHeight[parent] < barsHeight[i]) {
-    anim(bars[i], barsHeight[i], p1)
-    anim(bars[parent], barsHeight[parent], p2)
-    ;[barsHeight[i], barsHeight[parent]] = [barsHeight[parent], barsHeight[i]]
+
+    anim(bars[i], barsHeight[i], p1);
+    anim(bars[parent], barsHeight[parent], p2);
+    [barsHeight[i], barsHeight[parent]] = [barsHeight[parent], barsHeight[i]];
+
 
     anim(bars[i], barsHeight[i], heap)
     anim(bars[parent], barsHeight[parent], heap)
@@ -263,4 +297,39 @@ function heapifyDown(size) {
   }
 }
 
-generateNewArray()
+
+// Quick Sort
+function quickSort(start, end) {
+  if (start > end) {
+    return;
+  }
+  if (start == end) {
+    anim(bars[start], barsHeight[start], sorted);
+    return;
+  }
+  let pivot = barsHeight[start];
+  let i = start;
+  let j = end + 1;
+  while (i < j) {
+    do {
+      anim(bars[i], barsHeight[i], p1);
+      anim(bars[i], barsHeight[i], p);
+      i++;
+    } while (barsHeight[i] <= pivot);
+    do {
+      j--;
+      anim(bars[j], barsHeight[j], p2);
+      anim(bars[j], barsHeight[j], p);
+    } while (barsHeight[j] > pivot);
+    if (i < j) {
+      [barsHeight[i], barsHeight[j]] = [barsHeight[j], barsHeight[i]];
+    }
+  }
+  [barsHeight[start], barsHeight[j]] = [barsHeight[j], barsHeight[start]];
+  anim(bars[j], barsHeight[j], sorted);
+  quickSort(start, j - 1);
+  quickSort(j + 1, end);
+}
+
+generateNewArray();
+
