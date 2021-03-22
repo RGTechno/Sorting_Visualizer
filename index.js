@@ -33,11 +33,8 @@ const generateNewArray = () => {
     bars[i].style.height = barsHeight[i] + "px";
   }
   let i = Math.floor(Math.random() * 30);
-  barsHeight[i] = barsHeight[30] = 500;
-  bars[i].style.height = bars[30].style.height = barsHeight[i] + "px";
-  // barsHeight[30].style.visibility = "hidden";
-  console.log(i);
-  console.log(barsHeight);
+  barsHeight[i] = 500;
+  bars[i].style.height = barsHeight[i] + "px";
 };
 
 //Generate New Array Event Listener
@@ -58,7 +55,6 @@ const anim = (bar, height, color) => {
 //Sorting Button
 let sortBtn = document.getElementById("sortBtn");
 sortBtn.addEventListener("click", () => {
-  console.log(barsHeight);
   switch (curAlgo) {
     case "Bubble Sort":
       bubbleSort();
@@ -126,7 +122,7 @@ function bubbleSort() {
 function selectionSort() {
   for (let i = 0; i < n - 1; i++) {
     let min = i;
-    // anim(bars[i],barsHeight[i],p2)
+
     for (let j = n - 1; j > i; j--) {
       anim(bars[j], barsHeight[j], p1);
 
@@ -149,7 +145,7 @@ function insertionSort() {
   for (let i = 0; i < n; i++) {
     let no = barsHeight[i];
     anim(bars[i], barsHeight[i], p2);
-    let j;
+    let j = i - 1;
     for (j = i - 1; j >= 0 && barsHeight[j] > no; j--) {
       barsHeight[j + 1] = barsHeight[j];
       anim(bars[j], barsHeight[j], p1);
