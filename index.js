@@ -5,7 +5,7 @@ function randomNumber(min, max) {
 
 //Audio Sound
 let sound = document.getElementById('sound')
-const arraySorted = () => {
+const arraySorted = async () => {
   sound.src = './sort.mp3'
   sound.play()
 }
@@ -66,6 +66,9 @@ sortBtn.addEventListener('click', () => {
       break
     case 'Selection Sort':
       selectionSort()
+      break
+    case 'Insertion Sort':
+      insertionSort()
       break
     case 'Merge Sort':
       mergeSort(0, n - 1)
@@ -141,6 +144,23 @@ function selectionSort() {
   anim(bars[n - 1], barsHeight[n - 1], sorted)
 }
 
+//Insertion Sort
+function insertionSort() {
+  let j
+  for (let i = 1; i < n; i++) {
+    let no = barsHeight[i]
+    anim(bars[i], barsHeight[i], 'blue')
+    for (j = i - 1; j >= 0 && barsHeight[j] > no; j--) {
+      barsHeight[j + 1] = barsHeight[j]
+      anim(bars[j + 1], barsHeight[j + 1], 'violet')
+    }
+    barsHeight[j + 1] = no
+    if (j < 0) anim(bars[j + 1], barsHeight[j + 1], 'green')
+    anim(bars[j], barsHeight[j], 'green')
+    // anim(bars[j + 1], barsHeight[j + 1], 'green')
+  }
+}
+
 // Merge Sort
 function mergeSort(start, end) {
   if (start >= end) {
@@ -210,7 +230,6 @@ function heapifyUp(i) {
   while (i > 0 && barsHeight[parent] < barsHeight[i]) {
     anim(bars[i], barsHeight[i], p1)
     anim(bars[parent], barsHeight[parent], p2)
-
     ;[barsHeight[i], barsHeight[parent]] = [barsHeight[parent], barsHeight[i]]
 
     anim(bars[i], barsHeight[i], heap)
