@@ -5,7 +5,7 @@ function randomNumber(min, max) {
 
 //Audio Sound
 let sound = document.getElementById('sound')
-const arraySorted = async () => {
+function arraySorted() {
   sound.src = './sort.mp3'
   sound.play()
 }
