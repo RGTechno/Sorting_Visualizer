@@ -33,6 +33,7 @@ body {
 /* Bars */
 .barsCon {
   margin-top: 5%;
+  height: 70vh;
 }
 .bar {
   width: 2%;
