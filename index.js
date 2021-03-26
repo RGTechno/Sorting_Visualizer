@@ -3,6 +3,10 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+let reset = document.getElementById('reset')
+
+reset.addEventListener('click', generateNewArray)
+
 let dropdownToggle = document.querySelector('.dropdown-toggle')
 let sortBtn = document.getElementById('sortBtn')
 let speedRange = document.getElementById('speedRange')
@@ -11,14 +15,14 @@ let arrayRange = document.getElementById('arrayRange')
 function disable() {
   dropdownToggle.classList.add('disabled')
   sortBtn.classList.add('disabled')
-  speedRange.setAttribute("disabled", "");
-  arrayRange.setAttribute("disabled", "");
+  speedRange.setAttribute('disabled', '')
+  arrayRange.setAttribute('disabled', '')
 }
 function enable() {
   dropdownToggle.classList.remove('disabled')
   sortBtn.classList.remove('disabled')
-  speedRange.removeAttribute("disabled");
-  arrayRange.removeAttribute("disabled");
+  speedRange.removeAttribute('disabled')
+  arrayRange.removeAttribute('disabled')
 }
 
 // Navigation Bar Dropdown Swapping
@@ -77,7 +81,7 @@ const anim = (bar, height, color) => {
   setTimeout(() => {
     bar.style.height = height + 'px'
     bar.style.backgroundColor = color
-  }, (c += delay))
+  }, (c += delay+10))
 }
 
 //Sorting Button
