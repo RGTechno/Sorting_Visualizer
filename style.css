@@ -1,6 +1,6 @@
 body {
   background-color: #212529;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
   zoom: 75%;
 }
@@ -43,6 +43,7 @@ body {
   display: inline-block;
   border-radius: 50px;
   box-shadow: 3px 5px #888888;
+  transition: ease-out 0.3s;
 }
 
 /* Sort Btn */
@@ -53,3 +54,10 @@ body {
   font-weight: bold;
   width: 225px;
 }
+
+/* .bar:hover {
+  transition: 0.3s ease-out;
+  box-shadow: 10px 10px 10px 10px purple;
+  width: 3%;
+  margin: 0px 5px 0px 7px;
+} */
