@@ -51,6 +51,11 @@ let barsCon = document.querySelector('.barsCon')
 function generateNewArray() {
   enable()
   barsCon.innerHTML = ''
+  if (n > 30) {
+    document.documentElement.style.setProperty('--width', '30px')
+  } else {
+    document.documentElement.style.setProperty('--width', '40px')
+  }
   for (let i = 0; i < n; i++) {
     barsHeight[i] = randomNumber(100, 500)
     bars[i] = document.createElement('div')
@@ -81,7 +86,7 @@ const anim = (bar, height, color) => {
   setTimeout(() => {
     bar.style.height = height + 'px'
     bar.style.backgroundColor = color
-  }, (c += delay+10))
+  }, (c += delay + 10))
 }
 
 //Sorting Button

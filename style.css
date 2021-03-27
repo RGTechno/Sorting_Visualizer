@@ -1,3 +1,7 @@
+:root {
+  --width:40px;
+}
+
 body {
   background-color: #212529;
   font-family: 'Montserrat', sans-serif;
@@ -36,7 +40,7 @@ body {
   height: 70vh;
 }
 .bar {
-  width: 2%;
+  width: var(--width);
   background-color: whitesmoke;
   margin-right: 2px;
   margin-left: 5px;
