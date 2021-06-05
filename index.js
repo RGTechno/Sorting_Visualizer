@@ -32,9 +32,11 @@ const generateNewArray = () => {
     barsCon.appendChild(bars[i]);
     bars[i].style.height = barsHeight[i] + "px";
   }
-  let i = Math.floor(Math.random() * 30);
-  barsHeight[i] = 500;
-  bars[i].style.height = barsHeight[i] + "px";
+  // dummy bar to keep the barsCont stable
+  let dummy = document.createElement("div");
+  dummy.classList.add("dummy");
+  barsCon.appendChild(dummy);
+
 };
 
 //Generate New Array Event Listener

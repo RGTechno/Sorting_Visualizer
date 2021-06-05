@@ -33,7 +33,16 @@ body {
 /* Bars */
 .barsCon {
   margin-top: 5%;
+  height: 500px;
+  width: 100%;
 }
+
+.dummy {
+  height: 500px;
+  width: 0.1%;
+  display: inline-block;
+}
+
 .bar {
   width: 2%;
   background-color: whitesmoke;
@@ -42,6 +51,7 @@ body {
   display: inline-block;
   border-radius: 50px;
   box-shadow: 3px 5px #888888;
+  bottom: 0px;
 }
 
 /* Sort Btn */
