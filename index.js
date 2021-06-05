@@ -92,6 +92,11 @@ sortBtn.addEventListener("click", () => {
   document.getElementById("speed").disabled = true;
   document.getElementById("navbarDropdownMenuLink").disabled = true;
   document.getElementById("sortBtn").innerHTML = "Sorting . . .";
+
+  for (let i = 0; i < n; i++) {
+    bars[i].style.backgroundColor = "whitesmoke";
+  }
+
   switch (curAlgo) {
     case "Bubble Sort":
       bubbleSort();
@@ -133,7 +138,6 @@ sortBtn.addEventListener("click", () => {
 });
 
 //Sorting Algorithms
-
 // colors
 let p = "whitesmoke";
 let p1 = "#ff8ba0";
