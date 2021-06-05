@@ -24,6 +24,13 @@ let barsCon = document.querySelector(".barsCon");
 let newWidth = 2;
 // Generation
 const generateNewArray = () => {
+  clearTimeout();
+  document.getElementById("sortBtn").disabled = false;
+  document.getElementById("size").disabled = false;
+  document.getElementById("speed").disabled = false;
+  document.getElementById("navbarDropdownMenuLink").disabled = false;
+  c = 0;
+  document.getElementById("sortBtn").innerHTML = "Sort";
   barsCon.innerHTML = "";
   for (let i = 0; i < n; i++) {
     barsHeight[i] = randomNumber(100, 450);
@@ -40,12 +47,10 @@ const generateNewArray = () => {
 
 };
 
-
 //Visuals
 let speed = 500;
 let delay = 10000 / (Math.floor(n / 10) * speed);
 let c = 0;
-
 const anim = (bar, height, color) => {
   setTimeout(() => {
     bar.style.height = height + "px";
@@ -79,13 +84,14 @@ document.getElementById("speed").addEventListener("input", updateSpeed);
 document.getElementById("size").addEventListener("input", updateSize);
 
 
-
-
-
-
 //Sorting Button
 let sortBtn = document.getElementById("sortBtn");
 sortBtn.addEventListener("click", () => {
+  document.getElementById("sortBtn").disabled = true;
+  document.getElementById("size").disabled = true;
+  document.getElementById("speed").disabled = true;
+  document.getElementById("navbarDropdownMenuLink").disabled = true;
+  document.getElementById("sortBtn").innerHTML = "Sorting . . .";
   switch (curAlgo) {
     case "Bubble Sort":
       bubbleSort();
@@ -114,7 +120,16 @@ sortBtn.addEventListener("click", () => {
   for (let i = 0; i < n; i++) {
     anim(bars[i], barsHeight[i], sorted);
   }
-  c = 0;
+
+  setTimeout(function () {
+    document.getElementById("sortBtn").disabled = false;
+    document.getElementById("size").disabled = false;
+    document.getElementById("speed").disabled = false;
+    document.getElementById("navbarDropdownMenuLink").disabled = false;
+    document.getElementById("sortBtn").innerHTML = "Sort";
+    c = 0;
+  }, c);
+
 });
 
 //Sorting Algorithms
