@@ -19,18 +19,19 @@ for (let i = 0; i < A.length; i++) {
 // Bars
 let barsHeight = [];
 let bars = [];
-const n = 30;
+let n = 35;
 let barsCon = document.querySelector(".barsCon");
-
+let newWidth = 2;
 // Generation
 const generateNewArray = () => {
   barsCon.innerHTML = "";
   for (let i = 0; i < n; i++) {
-    barsHeight[i] = randomNumber(100, 500);
+    barsHeight[i] = randomNumber(100, 450);
     bars[i] = document.createElement("div");
     bars[i].classList.add("bar");
     barsCon.appendChild(bars[i]);
     bars[i].style.height = barsHeight[i] + "px";
+    bars[i].style.width = newWidth + "%";
   }
   // dummy bar to keep the barsCont stable
   let dummy = document.createElement("div");
@@ -39,8 +40,6 @@ const generateNewArray = () => {
 
 };
 
-//Generate New Array Event Listener
-document.querySelector(".newArray").addEventListener("click", generateNewArray);
 
 //Visuals
 let speed = 500;
@@ -53,6 +52,36 @@ const anim = (bar, height, color) => {
     bar.style.backgroundColor = color;
   }, (c += delay));
 };
+
+
+//Generate New Array Event Listener
+document.querySelector(".newArray").addEventListener("click", generateNewArray);
+
+
+
+// input functions
+function updateSpeed() {
+  let newSpeed = document.getElementById("speed").value;
+  speed = newSpeed;
+  delay = 10000 / (Math.floor(n / 10) * speed);
+}
+
+function updateSize() {
+  let newSize = document.getElementById("size").value;
+  n = newSize;
+  newWidth = 70 / n;
+  generateNewArray();
+}
+
+// input eventListeners
+document.getElementById("speed").addEventListener("input", updateSpeed);
+
+document.getElementById("size").addEventListener("input", updateSize);
+
+
+
+
+
 
 //Sorting Button
 let sortBtn = document.getElementById("sortBtn");

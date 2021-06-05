@@ -1,14 +1,21 @@
 body {
   background-color: #212529;
   font-family: "Montserrat", sans-serif;
-  text-align: center;
+  /* text-align: center; */
   zoom: 75%;
+  display: inline-flexbox;
+  justify-content: center;
+  height: 100vh;
 }
 
 /* Navigation Bar */
 .container-fluid {
   padding: 1% 2% 0 2%;
   text-align: left;
+}
+
+.range {
+  color: whitesmoke !important;
 }
 
 .appName {
@@ -21,6 +28,7 @@ body {
   font-weight: bold;
 }
 
+.nav-link,
 .newArray {
   margin-right: 1rem;
 }
@@ -33,21 +41,21 @@ body {
 /* Bars */
 .barsCon {
   margin-top: 5%;
-  height: 500px;
+  height: 450px;
   width: 100%;
+  text-align: center;
 }
 
 .dummy {
-  height: 500px;
+  height: 450px;
   width: 0.1%;
   display: inline-block;
 }
 
 .bar {
-  width: 2%;
   background-color: whitesmoke;
-  margin-right: 2px;
-  margin-left: 5px;
+  margin-right: 0.1%;
+  margin-left: 0.3%;
   display: inline-block;
   border-radius: 50px;
   box-shadow: 3px 5px #888888;

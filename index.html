@@ -27,6 +27,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand appName" href="#">Sorting Visualizer</a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -35,9 +36,22 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
                     <ul class="navbar-nav navItemsList">
+
+
                         <li class="nav-item">
                             <a class="nav-link newArray" aria-current="page" href="#">Generate New Array</a>
                         </li>
+
+                        <li class="nav-item nav-link range">
+                            <span>Speed </span>
+                            <input type="range" min="75" max="750" value="500" id="speed">
+                        </li>
+                        <li class="nav-item nav-link range">
+                            <span>Size </span>
+                            <input type="range" min="25" max="60" value="40" id="size">
+
+                        </li>
+
 
 
                         <li class="nav-item dropdown">
@@ -53,11 +67,15 @@
                             </ul>
                         </li>
 
+
+
                     </ul>
                 </div>
             </div>
         </nav>
+
     </div>
+
 
     <!-- Bars -->
     <div class="barsCon">
