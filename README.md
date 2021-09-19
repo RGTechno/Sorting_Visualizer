@@ -1,8 +1,6 @@
 # Sorting Visualizer
 ![](./Resources/mergeSort.gif)  
- ### Visualize the following sorting algorithms in one of the most efficient way
- 
- - ## Algorithms Included
+ - ## Visualize the following Sorting Algorithms in one of the most efficient way
    - ### Bubble Sort 
    - ### Insertion Sort
    - ### Selection Sort
@@ -12,7 +10,7 @@
  
 
   
- - ## [Demo Link](https://dhruvpasricha.github.io/Sorting_Visualizer/) 
+- ## [Demo Link](https://dhruvpasricha.github.io/Sorting_Visualizer/) 
 
 # Credits 
 - ### [Dhruv Pasricha](https://github.com/DhruvPasricha)
