@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="style.css">
     <title>Sorting Visualizer</title>
 
+    <!-- External JS -->
+    <script async defer src="index.js"></script>
+
 </head>
 
 <body>
@@ -33,13 +36,28 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div>
+                    <li>
+                        <label for="arrayRange" class="form-label text-white fw-bold">Array Size</label>
+                        <input type="range" min="10" max="40" value="30" id="arrayRange"
+                            onchange="arraySizeChange(this.value)">
+                    </li>
+                    <li>
+                        <label for="speedRange" class="form-label text-white fw-bold">Speed</label>
+                        <input type="range" min="50" max="1000" value="500" id="speedRange"
+                            onchange="speedChange(this.value)">
+                    </li>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
                     <ul class="navbar-nav navItemsList">
 
 
                         <li class="nav-item">
-                            <a class="nav-link newArray" aria-current="page" href="#">Generate New Array</a>
+                            <a class="nav-link newArray toChange" aria-current="page" href="#">Generate New Array</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link newArray toChange" aria-current="page" href="#" id="reset">RESET</a>
                         </li>
 
                         <li class="nav-item nav-link range">
@@ -54,7 +72,7 @@
 
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink"
+                            <a class="nav-link dropdown-toggle active disabled" href="#" id="navbarDropdownMenuLink"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">Bubble Sort</a>
                             <ul class="dropdown-menu navDropdown" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="#">Insertion Sort</a></li>
@@ -88,13 +106,14 @@
     <button class=" my-5 btn btn-outline-light rounded-pill btn-lg" id="sortBtn">Sort</button>
 
 
+
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
 
-    <!-- External JS -->
-    <script src="index.js"></script>
+
 
 </body>
 
