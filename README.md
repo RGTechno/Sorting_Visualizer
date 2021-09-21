@@ -16,7 +16,7 @@
  
 
   
-- ## [Demo Link](https://dhruvpasricha.github.io/Sorting_Visualizer/) 
+- ## [Demo Link](https://rgtechno.github.io/Sorting_Visualizer/) 
 
 <hr>
 
